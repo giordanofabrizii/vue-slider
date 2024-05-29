@@ -53,6 +53,10 @@ createApp ({
             // Call a function that switch the image with the associated index
             this.changeItem();
         },
+        /**
+         * Takes the value of the currentIndex and show the right element
+         * 
+         */
         changeItem: function(){
             this.currentImage = this.imagesArray[this.currentIndex].image;
             this.currentTitle = this.imagesArray[this.currentIndex].title;
@@ -61,42 +65,68 @@ createApp ({
             const thumbnails = document.getElementById('thumbnails').childNodes;
             thumbnails[this.currentIndex].classList.remove('gray')
         },
+        /**
+         * Crete as much thumbnails as much images are in the array
+         * 
+         * @param {*} el container of the thumbnail
+         */
         createThumbnails: function(el){
             el.innerHTML = ''
 
             this.imagesArray.forEach((immagine, index) => {
-                let newThumbnail = document.createElement('img');
+                // Create a new img.thumbnail
+                let newThumbnail = document.createElement('img'); 
                 newThumbnail.src = immagine.image;
                 newThumbnail.classList.add("thumbnail");
+
+                // If it's not the image vizualized, add a gray filter
                 if (this.currentIndex != index) {
                     newThumbnail.classList.add("gray")
                 };
-                newThumbnail.addEventListener('click', switchTo => {
+
+                // On the click, the showing image has to be the one clicked
+                newThumbnail.addEventListener('click', (switchTo) => {
                     this.addClass();
                     this.currentIndex = index;
                     this.changeItem();
                 });
+
+                // Add the image in the thumbnail container
                 el.appendChild(newThumbnail);
             })
         },
+        /**
+         * Insert a class "gray" to all the thumbnails elements
+         * 
+         */
         addClass: function() {
             const thumbnails = document.getElementById('thumbnails').childNodes;
             this.createThumbnails(document.getElementById("thumbnails"));
             thumbnails[this.currentIndex].classList.add('gray');
         },
+        /**
+         * Takes the values of the input and generate a new image with those 
+         * 
+         */
         addImg: function() {
             let newImg = {};
+            // Take the values in the inputs
             newImg.image = document.getElementById('newSrc').value;
-            document.getElementById('newSrc').value = '';
             newImg.title = document.getElementById('newTitle').value;
-            document.getElementById('newTitle').value = '';
             newImg.text = document.getElementById('newText').value;
+
+            // Empty the values
+            document.getElementById('newSrc').value = '';
+            document.getElementById('newTitle').value = '';
             document.getElementById('newText').value = '';
+
+            // Add a new img and insert in the thumbnail
             this.imagesArray.push(newImg);
             this.addClass()
         }
     },
     mounted() {
+        // At the start, create the thumbnails as much as are the images in the array
         this.addClass()
     }
 }).mount('#app');
