@@ -35,10 +35,25 @@ createApp ({
     },
     methods: {
         slideBefore: function (){
-            console.log('PRIMA')
+            this.currentIndex--;
+            if (this.currentIndex < 0) {
+                this.currentIndex = this.imagesArray.length - 1
+            };
+            // Call a function that switch the image with the associated index
+            this.changeItem();
         },
         slideAfter: function (){
-            console.log('DOPO')
+            this.currentIndex++;
+            if (this.currentIndex > this.imagesArray.length - 1) {
+                this.currentIndex = 0;
+            };
+            // Call a function that switch the image with the associated index
+            this.changeItem();
+        },
+        changeItem: function(){
+            this.currentImage = this.imagesArray[this.currentIndex].image;
+            this.currentTitle = this.imagesArray[this.currentIndex].title;
+            this.currentText = this.imagesArray[this.currentIndex].text;
         }
     }
 }).mount('#app')
