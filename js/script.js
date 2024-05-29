@@ -34,7 +34,8 @@ createApp ({
     },
     methods: {
         slideBefore: function (){
-            this.addClass();
+            const thumbnails = document.getElementById('thumbnails').childNodes;
+            thumbnails[this.currentIndex].classList.add('gray');
 
             this.currentIndex--;
             if (this.currentIndex < 0) {
@@ -44,7 +45,8 @@ createApp ({
             this.changeItem();
         },
         slideAfter: function (){
-            this.addClass();
+            const thumbnails = document.getElementById('thumbnails').childNodes;
+            thumbnails[this.currentIndex].classList.add('gray');
 
             this.currentIndex++;
             if (this.currentIndex > this.imagesArray.length - 1) {
@@ -86,7 +88,7 @@ createApp ({
 
                 // On the click, the showing image has to be the one clicked
                 newThumbnail.addEventListener('click', (switchTo) => {
-                    this.addClass();
+                    this.createThumbnails(document.getElementById("thumbnails"));
                     this.currentIndex = index;
                     this.changeItem();
                 });
@@ -94,15 +96,6 @@ createApp ({
                 // Add the image in the thumbnail container
                 el.appendChild(newThumbnail);
             })
-        },
-        /**
-         * Insert a class "gray" to all the thumbnails elements
-         * 
-         */
-        addClass: function() {
-            const thumbnails = document.getElementById('thumbnails').childNodes;
-            this.createThumbnails(document.getElementById("thumbnails"));
-            thumbnails[this.currentIndex].classList.add('gray');
         },
         /**
          * Takes the values of the input and generate a new image with those 
@@ -122,12 +115,13 @@ createApp ({
 
             // Add a new img and insert in the thumbnail
             this.imagesArray.push(newImg);
-            this.addClass()
+            this.createThumbnails(document.getElementById("thumbnails"));
         }
     },
     mounted() {
         // At the start, create the thumbnails as much as are the images in the array
-        this.addClass()
+        this.createThumbnails(document.getElementById("thumbnails"));
+        
     }
 }).mount('#app');
 
