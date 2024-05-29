@@ -68,7 +68,12 @@ createApp ({
                 newThumbnail.classList.add("thumbnail");
                 if (this.currentIndex != index) {
                     newThumbnail.classList.add("gray")
-                }
+                };
+                newThumbnail.addEventListener('click', switchTo => {
+                    this.addClass();
+                    this.currentIndex = index;
+                    this.changeItem();
+                });
                 el.appendChild(newThumbnail);
             })
         },
