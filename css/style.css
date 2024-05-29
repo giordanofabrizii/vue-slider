@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background-color: black;
 }
 
 .container {
@@ -32,15 +33,24 @@
 
 .item .text {
     position: absolute;
-    right: 20px;
-    bottom: 20px;
+    right: 0px;
+    bottom: 0px;
     text-align: right;
     color: white;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
 }
 
 i{
     font-size: 2rem;
     padding: 1rem;
+    color: white;
+    transition: all .2s linear;
 }
 
 /* ? %%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -61,4 +71,12 @@ i{
 #thumbnails {
     display: flex;
     justify-content: center;
+}
+
+i:first-of-type:hover{
+    transform: translateX(-5px);
+}
+
+i:last-of-type:hover{
+    transform: translateX(5px);
 }
