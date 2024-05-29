@@ -34,6 +34,8 @@ createApp ({
     },
     methods: {
         slideBefore: function (){
+            this.addClass();
+
             this.currentIndex--;
             if (this.currentIndex < 0) {
                 this.currentIndex = this.imagesArray.length - 1
@@ -42,27 +44,38 @@ createApp ({
             this.changeItem();
         },
         slideAfter: function (){
+            this.addClass();
+
             this.currentIndex++;
             if (this.currentIndex > this.imagesArray.length - 1) {
                 this.currentIndex = 0;
             };
             // Call a function that switch the image with the associated index
             this.changeItem();
-            this.crea();
         },
         changeItem: function(){
             this.currentImage = this.imagesArray[this.currentIndex].image;
             this.currentTitle = this.imagesArray[this.currentIndex].title;
             this.currentText = this.imagesArray[this.currentIndex].text;
+
+            const thumbnails = document.getElementById('thumbnails').childNodes;
+            thumbnails[this.currentIndex].classList.remove('gray')
         },
         createThumbnails: function(el){
-            this.imagesArray.forEach(immagine => {
+            this.imagesArray.forEach((immagine, index) => {
                 let newThumbnail = document.createElement('img');
                 newThumbnail.src = immagine.image;
-                newThumbnail.classList.add("gray", "thumbnail")
+                newThumbnail.classList.add("thumbnail");
+                if (this.currentIndex != index) {
+                    newThumbnail.classList.add("gray")
+                }
                 el.appendChild(newThumbnail);
             })
         },
+        addClass: function() {
+            const thumbnails = document.getElementById('thumbnails').childNodes;
+            thumbnails[this.currentIndex].classList.add('gray');
+        }
     },
     mounted() {
         const thumbnailsContainerEl = document.getElementById("thumbnails")
