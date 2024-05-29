@@ -30,8 +30,13 @@
             <i @click="slideAfter" class="fa-solid fa-angle-right"></i>
             
         </div>
-        <div id="thumbnails">
-        </div>
+        <div id="thumbnails"></div>
+        <section id="inputs">
+            <input id="newSrc" type="text" placeholder="Inserisci un url di una nuova immmagine">
+            <input id="newTitle" type="text" placeholder="Inserisci il titolo">
+            <input id="newText" type="text" placeholder="Inserisci la descrizione">
+            <input @click="addImg" id="submit" type="submit" value="Aggiungi">
+        </section>
 
     </div>
 

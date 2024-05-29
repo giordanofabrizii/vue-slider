@@ -62,6 +62,8 @@ createApp ({
             thumbnails[this.currentIndex].classList.remove('gray')
         },
         createThumbnails: function(el){
+            el.innerHTML = ''
+
             this.imagesArray.forEach((immagine, index) => {
                 let newThumbnail = document.createElement('img');
                 newThumbnail.src = immagine.image;
@@ -79,11 +81,25 @@ createApp ({
         },
         addClass: function() {
             const thumbnails = document.getElementById('thumbnails').childNodes;
+            this.createThumbnails(document.getElementById("thumbnails"));
             thumbnails[this.currentIndex].classList.add('gray');
+        },
+        addImg: function() {
+            let newImg = {};
+            newImg.image = document.getElementById('newSrc').value;
+            document.getElementById('newSrc').value = '';
+            newImg.title = document.getElementById('newTitle').value;
+            document.getElementById('newTitle').value = '';
+            newImg.text = document.getElementById('newText').value;
+            document.getElementById('newText').value = '';
+            this.imagesArray.push(newImg);
+            this.addClass()
         }
     },
     mounted() {
-        const thumbnailsContainerEl = document.getElementById("thumbnails")
-        this.createThumbnails(thumbnailsContainerEl);
+        this.addClass()
     }
 }).mount('#app');
+
+let button = document.getElementById('submit');
+console.log(button);
