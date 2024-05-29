@@ -88,7 +88,8 @@ createApp ({
 
                 // On the click, the showing image has to be the one clicked
                 newThumbnail.addEventListener('click', (switchTo) => {
-                    this.createThumbnails(document.getElementById("thumbnails"));
+                    const thumbnails = document.getElementById('thumbnails').childNodes;
+                    thumbnails[this.currentIndex].classList.add('gray');
                     this.currentIndex = index;
                     this.changeItem();
                 });
