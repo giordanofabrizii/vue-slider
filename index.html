@@ -23,13 +23,14 @@
                     <img :src="currentImage" alt="Spiderman" />
                     <div class="text">
                         <h3>{{ currentTitle }}</h3>
-                        <p>
-                            {{ currentText }}
-                        </p>
+                        <p>{{ currentText }}</p>
                     </div>
                 </div>
             </div>
             <i @click="slideAfter" class="fa-solid fa-angle-right"></i>
+            
+        </div>
+        <div id="thumbnails" @click="crea">
         </div>
 
     </div>

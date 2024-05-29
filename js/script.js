@@ -30,7 +30,6 @@ createApp ({
             currentImage: 'img/01.webp',
             currentTitle: 'Marvel\'s Spiderman Miles Morale',
             currentText: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
-
         }
     },
     methods: {
@@ -49,11 +48,24 @@ createApp ({
             };
             // Call a function that switch the image with the associated index
             this.changeItem();
+            this.crea();
         },
         changeItem: function(){
             this.currentImage = this.imagesArray[this.currentIndex].image;
             this.currentTitle = this.imagesArray[this.currentIndex].title;
             this.currentText = this.imagesArray[this.currentIndex].text;
-        }
+        },
+        createThumbnails: function(el){
+            this.imagesArray.forEach(immagine => {
+                let newThumbnail = document.createElement('img');
+                newThumbnail.src = immagine.image;
+                newThumbnail.classList.add("gray", "thumbnail")
+                el.appendChild(newThumbnail);
+            })
+        },
+    },
+    mounted() {
+        const thumbnailsContainerEl = document.getElementById("thumbnails")
+        this.createThumbnails(thumbnailsContainerEl);
     }
-}).mount('#app')
+}).mount('#app');

@@ -4,8 +4,14 @@
     box-sizing: border-box;
 }
 
-.container {
+#app{
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,4 +41,24 @@
 i{
     font-size: 2rem;
     padding: 1rem;
+}
+
+/* ? %%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* > THUMBNAIL SECTION */
+/* ? %%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.thumbnail{
+    width: 5rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: .5rem;
+}
+
+.gray {
+    filter: grayscale(100%);
+}
+
+#thumbnails {
+    display: flex;
+    justify-content: center;
 }
